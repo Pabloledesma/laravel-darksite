@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/{locale?}', function($locale = null){
+	if($locale){
+		App::setLocale($locale);
+	}
+	return view('home');
 });
 
 Route::get('/posts', 'PostsController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
